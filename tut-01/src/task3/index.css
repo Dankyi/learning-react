@@ -1,0 +1,20 @@
+body {
+    /* background-color: #1B1212; */
+    background-color: black;
+    color: beige;
+
+}
+
+main {
+    /* align-content: center; */
+    /* align-items: center; */
+    /* display: flex;
+    justify-content: center; */
+    /* margin-left: 100px;
+    margin-right: 100px; */
+}
+
+.main-img {
+    width: 200px;
+    height: 200px;
+}
