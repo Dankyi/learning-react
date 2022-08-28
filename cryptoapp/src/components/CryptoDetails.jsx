@@ -8,7 +8,12 @@ import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined,
     CheckOutlined, NumberOutlined, ThunderboltOutlined 
 } from '@ant-design/icons';
 
-import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import { 
+    useGetCryptoDetailsQuery, 
+    useGetCryptoHistoryQuery 
+} from "../services/cryptoApi";
+
+import LineChart from "./LineChart";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -18,12 +23,12 @@ const CryptoDetails = () => {
     // useParams. See line 32 of Cryptocurrency.jsx
     const { coinId } = useParams();
     const [timePeriod, setTimePeriod] = React.useState("7d"); // 7 days
-    const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-    console.log(data);
+    const { data: cryptoDetails, isFetching } = useGetCryptoDetailsQuery(coinId);
+    const { data: cryptoHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
 
     if (isFetching) return "Loading ...";
 
-    const coinDetails = data?.data?.coin; // This is to ensure we've got some data to work with
+    const coinDetails = cryptoDetails?.data?.coin; // This is to ensure we've got some data to work with
 
     const periods = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
@@ -100,6 +105,12 @@ const CryptoDetails = () => {
                 {/* Populating Select/Combobox options with periods array elements*/}
                 {periods.map((period) => (<Option key={period}>{period}</Option>))}
             </Select>
+
+            <LineChart 
+                coinHistory={cryptoHistory}
+                currentPrice={millify(coinDetails?.price)}
+                coinName={coinDetails?.name}
+            />
 
             <Col className="stats-container">
                 <Col className="coin-value-statistics">
