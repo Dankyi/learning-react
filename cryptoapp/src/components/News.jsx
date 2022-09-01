@@ -23,7 +23,7 @@ const News = ({ simplified }) => {
     if (!cryptoNews?.value) return "Loading ...";
 
     // At this point we know we have some data to work with
-    console.log(cryptoNews);
+    // console.log(cryptoNews);
 
     const allCryptoNews = cryptoNews.value.map((news, index) => (
         <Col xs={24} sm={12} lg={8} className="crypto-card" key={index}>

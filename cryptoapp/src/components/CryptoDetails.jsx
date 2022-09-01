@@ -14,6 +14,7 @@ import {
 } from "../services/cryptoApi";
 
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -26,7 +27,7 @@ const CryptoDetails = () => {
     const { data: cryptoDetails, isFetching } = useGetCryptoDetailsQuery(coinId);
     const { data: cryptoHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
 
-    if (isFetching) return "Loading ...";
+    if (isFetching) return <Loader />;
 
     const coinDetails = cryptoDetails?.data?.coin; // This is to ensure we've got some data to work with
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import { Cryptocurrencies, News } from "../components";
+import Loader from "./Loader";
 
 const { Title } = Typography;
 
@@ -16,7 +17,7 @@ const Homepage = () => {
     // From console logging the data we can see data logged 
     // before it finally got printed so that's why Redux 
     // provides the isFetching hook so we check before..
-    if (isFetching) return "Loading...";
+    if (isFetching) return <Loader />;
 
     return (
         <>

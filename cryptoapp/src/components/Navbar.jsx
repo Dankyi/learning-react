@@ -6,6 +6,26 @@ import { HomeOutlined, MoneyCollectOutlined, BulbOutlined,
 import icon from "../images/cryptocurrency.png";
 
 const Navbar = () => {
+    const [activeMenu, setActiveMenu] = React.useState(true);
+    const [screenSize, setScreenSize] = React.useState(null);
+
+    // Added no dependency array cos we want it to run  
+    // only the first time to set the screen size value
+    React.useEffect(() => {
+        const handleResize = () => setScreenSize(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    // For this we want to have it run anytime the screen size changes
+    React.useEffect(() => {
+        screenSize < 768 // i.e. mobile/tablet size
+        ? setActiveMenu(false)
+        : setActiveMenu(true);
+    }, [screenSize]);
+
     return (
         <div className="nav-container">
             <div className="logo-container">
@@ -16,7 +36,16 @@ const Navbar = () => {
                      Router. See index.js file so as to get things working */}
                     <Link to="/">CryptoApp</Link>
                 </Typography.Title>
+                
+                <Button 
+                    className="menu-control-container"
+                    // Allows to hide or unhide the Menu when in mobile view
+                    onClick={() => setActiveMenu(!activeMenu)}
+                    ><MenuOutlined />
+                </Button>
+            </div>
 
+            {activeMenu && (
                 <Menu theme="dark">
                     <Menu.Item icon={<HomeOutlined />}>
                         <Link to="/">Home</Link>
@@ -25,16 +54,14 @@ const Navbar = () => {
                     <Menu.Item icon={<FundOutlined />}>
                         <Link to="/cryptocurrencies">Cryptocurrencies</Link>
                     </Menu.Item>
-
                     <Menu.Item icon={<MoneyCollectOutlined />}>
                         <Link to="/exchanges">Exchanges</Link>
                     </Menu.Item>
-
                     <Menu.Item icon={<BulbOutlined />}>
                         <Link to="/news">News</Link>
                     </Menu.Item>
                 </Menu>
-            </div>
+            )}
         </div>
     );
 }
