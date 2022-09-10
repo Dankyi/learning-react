@@ -21,8 +21,7 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, imageUrl, linkName, but
 );
 
 export default function Home({ propertyForSale, propertyForRent }) {
-	console.log(propertyForSale, propertyForRent);
-	
+	// console.log(propertyForSale, propertyForRent);
 	const saleProperties = propertyForSale.map(saleProp => (
 		<Property key={saleProp.id} property={saleProp} />
 	));
