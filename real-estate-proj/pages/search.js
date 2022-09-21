@@ -31,9 +31,10 @@ const Search = ({ properties }) => {
                 <Icon paddingLeft="2" w="7" as={BsFilter} />
             </Flex>
 
+            {/* This conditionally renders the search filters when toggled on*/}
             {searchResults && <SearchFilters />}
 
-            {/* Retrieve the query value(s) from search */}
+            {/* This retrieves the query value(s) from the url display as text */}
             <Text fontSize="2xl" p="4" fontWeight="bold">
                 Properties {router.query.purpose}
             </Text>
@@ -42,6 +43,7 @@ const Search = ({ properties }) => {
                 {allProperties}
             </Flex>
 
+            {/* This displays no result found if there are no properties data */}
             {properties.length === 0 && (
                 <Flex justifyContent="center" alignItems="center" 
                     flexDirection="column" marginTop="5" marginBottom="5"
