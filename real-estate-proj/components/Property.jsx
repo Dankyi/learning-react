@@ -10,8 +10,8 @@ import defaultImage from "../assets/images/house.jpeg";
 
 // Destruct the property prop's data (properties) to use
 const Property = ({ property: { coverPhoto, price, rentFrequency, rooms, 
-    title, baths, agency, area, isVerified, externalId } }) => (
-    <Link href={`/property/${externalId}`} >
+    title, baths, agency, area, isVerified, externalID } }) => (
+    <Link href={`/property/${externalID}`} >
         <Flex flexWrap="wrap" w="420px" p="5" paddingTop="0" 
             justifyContent="flex-start" cursor="pointer">
             <Box>

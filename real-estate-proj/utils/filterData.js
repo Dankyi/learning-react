@@ -136,8 +136,8 @@ export const filterData = [
 
 // This function receives an object and returns an array of values
 export const getFilterValues = (filterValues) => {
-    // This represents the queryName property. The value is assigned to the
-    // property when user selects an option. See line 47 of SearchFilters.js
+    // Destructure and retrieve the values of the keys from the filterValues 
+    // object passed in when getFilterValues function is called
     const {
         purpose,
         rentFrequency,

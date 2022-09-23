@@ -69,6 +69,10 @@ export async function getServerSideProps({ query }) {
     const locationExternalIDs = query.locationExternalIDs || "5002";
     const categoryExternalID = query.categoryExternalID || "4";
 
+    // The values of the parameters e.g. locationExternalIDs, bathsMin
+    // comes in when user selects some of the searchFilters and this
+    // in effect causes re-rendering of the search component passing 
+    // the values of the parameters to the below fetchAPI function
     const data = await fetchAPI(
         `${baseURL}/properties/list?locationExternalIDs=${
             locationExternalIDs}&purpose=${
