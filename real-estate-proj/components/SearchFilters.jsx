@@ -48,7 +48,12 @@ const SearchFilters = () => {
         // Create a query (e.g. rentFrequency=weekly)
         // for each of the "values" items array
         values.forEach(item => {
-            query[item.name] = item.value;
+            // This fixes the bug where all filters appear in the url 
+            // without user even selecting them and also allows properties 
+            // to be filtered by selecting 1 or more filters at the same time
+            if (item.value && filterValues?.[item.name]) {
+                query[item.name] = item.value;
+            }
         });
 
         // Append the query to the end of the url
