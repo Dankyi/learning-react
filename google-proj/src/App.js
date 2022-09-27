@@ -6,10 +6,18 @@ import Routes from "./components/Routes";
 import Footer from "./components/Footer";
 
 const App = () => {
+    const [darkTheme, setDarkTheme] = React.useState(false);
+
     return (
-        <h1 className="text-3xl font-bold underline">
-            Hello world!
-        </h1>
+        <div className={darkTheme ? "dark" : ""}>
+            {/* if in "dark" mode then apply bg and text 
+            color of weight 900 and 200 respectively */}
+            <div className="bg-gray-100 dark:bg-gray-900 dark:text-gray-200 min-h-screen">
+                <Navbar />
+                <Routes />
+                <Footer />
+            </div>
+        </div>
     );
 }
 
