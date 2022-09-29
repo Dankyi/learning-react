@@ -5,7 +5,7 @@ import Results from "./Results";
 
 const AppRoutes = () => {
     const paths = ["/search", "/images", "/news", "/videos"];
-    
+
     return (
         <div className="p-4">
             <Routes>
@@ -16,6 +16,7 @@ const AppRoutes = () => {
 
                 {paths.map(path => (
                     <Route
+                        key={path}
                         exact path={path}
                         element={<Results />}>
                     </Route>

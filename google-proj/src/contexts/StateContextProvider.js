@@ -27,7 +27,14 @@ const StateContextProvider = ({ children }) => {
         const response = await fetch(`${baseURL}${path}`, options);
         const data = await response.json();
 
-        setResults(data);
+        if (path.includes("/images")) {
+            setResults(data.image_results);
+        } else if (path.includes("/news")) {
+            setResults(data.entries);
+        } else {
+            setResults(data.results);
+        }
+
         setIsLoading(false);
     }
 
