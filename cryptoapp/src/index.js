@@ -7,10 +7,10 @@ import App from "./App";
 import store from "./app/store";
 
 ReactDOM.render(
-    <Router>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </Router>,
-    document.getElementById("root")
+	<Router>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</Router>,
+	document.getElementById("root")
 );
